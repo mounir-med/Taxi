@@ -50,14 +50,14 @@ export default function DriverWalletScreen() {
         Wallet
       </ThemedText>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
         {loading ? (
           <View style={{ alignItems: 'center', paddingVertical: 12 }}>
             <ActivityIndicator />
           </View>
         ) : null}
 
-        {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
+        {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
 
         <View style={styles.row}>
           <ThemedText type="defaultSemiBold">Balance</ThemedText>
@@ -79,7 +79,7 @@ export default function DriverWalletScreen() {
           <ThemedText>{wallet?.updatedAt ? String(wallet.updatedAt) : '-'}</ThemedText>
         </View>
 
-        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.icon }]}>
+        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.border }]}>
           <ThemedText>Rafraîchir</ThemedText>
         </Pressable>
       </View>

@@ -49,14 +49,14 @@ export default function UserTripDetailsScreen() {
           Détail trajet
         </ThemedText>
 
-        <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+        <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
           {loading ? (
             <View style={{ alignItems: 'center', paddingVertical: 12 }}>
               <ActivityIndicator />
             </View>
           ) : null}
 
-          {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
+          {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
 
           <View style={styles.row}>
             <ThemedText type="defaultSemiBold">Trip ID</ThemedText>
@@ -87,7 +87,7 @@ export default function UserTripDetailsScreen() {
             <ThemedText>{trip?.driver && typeof trip.driver.email === 'string' ? trip.driver.email : '-'}</ThemedText>
           </View>
 
-          <Pressable onPress={load} style={[styles.secondaryBtn, { borderColor: palette.icon }]}>
+          <Pressable onPress={load} style={[styles.secondaryBtn, { borderColor: palette.border, backgroundColor: palette.card }]}>
             <ThemedText>Rafraîchir</ThemedText>
           </Pressable>
         </View>

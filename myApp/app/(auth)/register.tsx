@@ -24,7 +24,7 @@ function RoleSelect({ value, onChange }: { value: Role; onChange: (r: Role) => v
       <Pressable
         accessibilityRole="button"
         onPress={() => setOpen(true)}
-        style={[styles.select, { borderColor: palette.icon, backgroundColor: palette.background }]}
+        style={[styles.select, { borderColor: palette.border, backgroundColor: palette.inputBackground }]}
       >
         <ThemedText type="defaultSemiBold">{roleLabel(value)}</ThemedText>
         <ThemedText style={{ opacity: 0.7 }}>Changer</ThemedText>
@@ -32,7 +32,7 @@ function RoleSelect({ value, onChange }: { value: Role; onChange: (r: Role) => v
 
       <Modal transparent visible={open} animationType="fade" onRequestClose={() => setOpen(false)}>
         <View style={styles.modalBackdrop}>
-          <View style={[styles.modalCard, { backgroundColor: palette.background, borderColor: palette.icon }]}
+          <View style={[styles.modalCard, { backgroundColor: palette.card, borderColor: palette.border }]}
           >
             <ThemedText type="subtitle" style={{ fontFamily: Fonts.rounded }}>
               Rôle du compte
@@ -45,7 +45,7 @@ function RoleSelect({ value, onChange }: { value: Role; onChange: (r: Role) => v
                   onChange(r);
                   setOpen(false);
                 }}
-                style={[styles.modalItem, { borderColor: palette.icon }]}
+                style={[styles.modalItem, { borderColor: palette.border, backgroundColor: palette.inputBackground }]}
               >
                 <ThemedText type={r === value ? 'defaultSemiBold' : 'default'}>{roleLabel(r)}</ThemedText>
               </Pressable>
@@ -123,7 +123,7 @@ export default function RegisterScreen() {
         <ThemedText style={{ opacity: 0.8 }}>Crée ton compte en quelques secondes</ThemedText>
       </View>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
         <ThemedText type="defaultSemiBold">Rôle</ThemedText>
         <RoleSelect value={selectedRole} onChange={setSelectedRole} />
 
@@ -134,8 +134,8 @@ export default function RegisterScreen() {
           value={name}
           onChangeText={setName}
           placeholder="Nom complet"
-          placeholderTextColor={palette.icon}
-          style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+          placeholderTextColor={palette.muted}
+          style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
         />
 
         {(selectedRole === 'USER' || selectedRole === 'DRIVER') ? (
@@ -147,9 +147,9 @@ export default function RegisterScreen() {
               value={phone}
               onChangeText={setPhone}
               placeholder="ex: +212..."
-              placeholderTextColor={palette.icon}
+              placeholderTextColor={palette.muted}
               keyboardType="phone-pad"
-              style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+              style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
             />
           </>
         ) : null}
@@ -163,8 +163,8 @@ export default function RegisterScreen() {
               value={licenseNumber}
               onChangeText={setLicenseNumber}
               placeholder="ex: AB12345"
-              placeholderTextColor={palette.icon}
-              style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+              placeholderTextColor={palette.muted}
+              style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
             />
 
             <ThemedText type="defaultSemiBold" style={styles.label}>
@@ -174,8 +174,8 @@ export default function RegisterScreen() {
               value={vehicleInfo}
               onChangeText={setVehicleInfo}
               placeholder="ex: Mercedes Classe E, Noir"
-              placeholderTextColor={palette.icon}
-              style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+              placeholderTextColor={palette.muted}
+              style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
             />
           </>
         ) : null}
@@ -187,10 +187,10 @@ export default function RegisterScreen() {
           value={email}
           onChangeText={setEmail}
           placeholder="ex: nom@mail.com"
-          placeholderTextColor={palette.icon}
+          placeholderTextColor={palette.muted}
           autoCapitalize="none"
           keyboardType="email-address"
-          style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+          style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
         />
 
         <ThemedText type="defaultSemiBold" style={styles.label}>
@@ -200,12 +200,12 @@ export default function RegisterScreen() {
           value={password}
           onChangeText={setPassword}
           placeholder="••••••••"
-          placeholderTextColor={palette.icon}
+          placeholderTextColor={palette.muted}
           secureTextEntry
-          style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+          style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
         />
 
-        {error ? <ThemedText style={{ color: '#c0392b', marginTop: 8 }}>{error}</ThemedText> : null}
+        {error ? <ThemedText style={{ color: palette.danger, marginTop: 8 }}>{error}</ThemedText> : null}
 
         <Pressable
           onPress={onSubmit}

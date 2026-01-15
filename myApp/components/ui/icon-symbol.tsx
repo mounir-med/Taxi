@@ -29,6 +29,7 @@ const MAPPING = {
   'person.crop.circle': 'person',
   'magnifyingglass': 'search',
   'person.2': 'group',
+  'person.2.fill': 'group',
 } as IconMapping;
 
 /**

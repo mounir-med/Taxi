@@ -24,7 +24,7 @@ export default function TripReceiptScreen() {
           Reçu
         </ThemedText>
 
-        <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+        <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
           <View style={styles.row}>
             <ThemedText type="defaultSemiBold">Trip ID</ThemedText>
             <ThemedText>{tripId ?? '-'}</ThemedText>
@@ -45,7 +45,7 @@ export default function TripReceiptScreen() {
             <ThemedText>{typeof driverNetAmount === 'number' && Number.isFinite(driverNetAmount) ? driverNetAmount.toFixed(2) : '-'}</ThemedText>
           </View>
 
-          <Pressable onPress={() => router.replace('/(tabs)/trips' as any)} style={[styles.btn, { borderColor: palette.icon }]}>
+          <Pressable onPress={() => router.replace('/(tabs)/trips' as any)} style={[styles.btn, { borderColor: palette.border, backgroundColor: palette.card }]}>
             <ThemedText>Retour à mes trajets</ThemedText>
           </Pressable>
         </View>

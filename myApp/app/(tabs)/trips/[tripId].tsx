@@ -123,14 +123,14 @@ export default function DriverTripDetailsScreen() {
           Détail trajet
         </ThemedText>
 
-        <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+        <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
           {loading ? (
             <View style={{ alignItems: 'center', paddingVertical: 12 }}>
               <ActivityIndicator />
             </View>
           ) : null}
 
-          {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
+          {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
 
           <View style={styles.row}>
             <ThemedText type="defaultSemiBold">Statut</ThemedText>
@@ -189,15 +189,15 @@ export default function DriverTripDetailsScreen() {
                 <Pressable
                   key={b.key}
                   onPress={() => doAction(b.action)}
-                  style={[styles.actionBtn, { borderColor: b.destructive ? '#c0392b' : palette.tint }]}
+                  style={[styles.actionBtn, { borderColor: b.destructive ? palette.danger : palette.tint }]}
                 >
-                  <ThemedText style={{ color: b.destructive ? '#c0392b' : palette.tint }}>{b.label}</ThemedText>
+                  <ThemedText style={{ color: b.destructive ? palette.danger : palette.tint }}>{b.label}</ThemedText>
                 </Pressable>
               ))}
             </View>
           ) : null}
 
-          <Pressable onPress={load} style={[styles.secondaryBtn, { borderColor: palette.icon }]}>
+          <Pressable onPress={load} style={[styles.secondaryBtn, { borderColor: palette.border, backgroundColor: palette.card }]}>
             <ThemedText>Rafraîchir</ThemedText>
           </Pressable>
         </View>

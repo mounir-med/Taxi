@@ -97,12 +97,12 @@ export default function DriverTripsListScreen() {
         <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
           Mes trajets
         </ThemedText>
-        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.icon }]}>
+        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.border, backgroundColor: palette.card }]}>
           <ThemedText>Rafraîchir</ThemedText>
         </Pressable>
       </View>
 
-      {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
+      {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
 
       <ScrollView contentContainerStyle={{ gap: 12, paddingBottom: 16 }}>
         {loading ? (
@@ -120,7 +120,7 @@ export default function DriverTripsListScreen() {
           const canComplete = status === 'STARTED';
 
           return (
-            <View key={t.id} style={[styles.item, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+            <View key={t.id} style={[styles.item, { borderColor: palette.border, backgroundColor: palette.card }]}>
               <View style={styles.row}>
                 <ThemedText type="defaultSemiBold">Statut</ThemedText>
                 <ThemedText>{status}</ThemedText>
@@ -138,8 +138,8 @@ export default function DriverTripsListScreen() {
 
               <View style={styles.actionsRow}>
                 {canCancel ? (
-                  <Pressable onPress={() => doAction(t.id, 'cancel')} style={[styles.actionBtn, { borderColor: '#c0392b' }]}>
-                    <ThemedText style={{ color: '#c0392b' }}>Annuler</ThemedText>
+                  <Pressable onPress={() => doAction(t.id, 'cancel')} style={[styles.actionBtn, { borderColor: palette.danger }]}>
+                    <ThemedText style={{ color: palette.danger }}>Annuler</ThemedText>
                   </Pressable>
                 ) : null}
 
@@ -157,7 +157,7 @@ export default function DriverTripsListScreen() {
 
                 <Pressable
                   onPress={() => router.push({ pathname: '/(tabs)/trips/[tripId]', params: { tripId: t.id } } as any)}
-                  style={[styles.actionBtn, { borderColor: palette.icon }]}
+                  style={[styles.actionBtn, { borderColor: palette.border, backgroundColor: palette.card }]}
                 >
                   <ThemedText>Voir</ThemedText>
                 </Pressable>

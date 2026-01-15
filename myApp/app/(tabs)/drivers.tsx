@@ -43,8 +43,8 @@ export default function DriversScreen() {
         Chauffeurs disponibles
       </ThemedText>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
-        <Pressable onPress={load} disabled={loading} style={[styles.refreshBtn, { borderColor: palette.icon }]}>
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
+        <Pressable onPress={load} disabled={loading} style={[styles.refreshBtn, { borderColor: palette.border, backgroundColor: palette.card }]}>
           <ThemedText>{loading ? '...' : 'Rafraîchir'}</ThemedText>
         </Pressable>
 
@@ -54,13 +54,13 @@ export default function DriversScreen() {
           </View>
         ) : null}
 
-        {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
+        {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
 
         <ScrollView contentContainerStyle={{ gap: 12, paddingBottom: 10 }}>
           {items.length === 0 && !loading ? <ThemedText style={{ opacity: 0.7 }}>Aucun chauffeur</ThemedText> : null}
 
           {items.map((d) => (
-            <View key={String(d.id)} style={[styles.item, { borderColor: palette.icon }]}
+            <View key={String(d.id)} style={[styles.item, { borderColor: palette.border, backgroundColor: palette.card }]}
             >
               <View style={styles.row}>
                 <ThemedText type="defaultSemiBold">Nom</ThemedText>

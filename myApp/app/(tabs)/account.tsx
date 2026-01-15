@@ -28,8 +28,8 @@ export default function AccountScreen() {
         Compte
       </ThemedText>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
-        {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
+        {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
 
         <View style={styles.row}>
           <ThemedText type="defaultSemiBold">Rôle</ThemedText>
@@ -82,16 +82,16 @@ export default function AccountScreen() {
               setRefreshing(false);
             }
           }}
-          style={[styles.refreshBtn, { borderColor: palette.icon }]}
+          style={[styles.refreshBtn, { borderColor: palette.border }]}
         >
           {refreshing ? <ActivityIndicator /> : <ThemedText>Rafraîchir profil</ThemedText>}
         </Pressable>
 
         <Pressable
           onPress={logout}
-          style={[styles.logoutBtn, { borderColor: '#c0392b' }]}
+          style={[styles.logoutBtn, { borderColor: palette.danger }]}
         >
-          <ThemedText style={{ color: '#c0392b' }}>Se déconnecter</ThemedText>
+          <ThemedText style={{ color: palette.danger }}>Se déconnecter</ThemedText>
         </Pressable>
       </View>
     </ThemedView>

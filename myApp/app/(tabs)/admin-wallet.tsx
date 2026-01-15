@@ -43,12 +43,12 @@ export default function AdminWalletScreen() {
         <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
           Wallet Admin
         </ThemedText>
-        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.icon }]} disabled={loading}>
+        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.border, backgroundColor: palette.card }]} disabled={loading}>
           <ThemedText>{loading ? '...' : 'Rafraîchir'}</ThemedText>
         </Pressable>
       </View>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}
       >
         {loading ? (
           <View style={{ alignItems: 'center', paddingVertical: 12 }}>
@@ -56,7 +56,7 @@ export default function AdminWalletScreen() {
           </View>
         ) : null}
 
-        {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
+        {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
 
         <View style={styles.row}>
           <ThemedText type="defaultSemiBold">Balance</ThemedText>

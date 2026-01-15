@@ -142,7 +142,7 @@ export default function AdminDriverDetailsScreen() {
           Détail driver
         </ThemedText>
 
-        <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}
+        <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}
         >
           {loading ? (
             <View style={{ alignItems: 'center', paddingVertical: 12 }}>
@@ -150,8 +150,8 @@ export default function AdminDriverDetailsScreen() {
             </View>
           ) : null}
 
-          {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
-          {success ? <ThemedText style={{ color: '#1e8449' }}>{success}</ThemedText> : null}
+          {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
+          {success ? <ThemedText style={{ color: palette.success }}>{success}</ThemedText> : null}
 
           <View style={styles.row}>
             <ThemedText type="defaultSemiBold">ID</ThemedText>
@@ -187,9 +187,9 @@ export default function AdminDriverDetailsScreen() {
             value={nextStatus}
             onChangeText={(t) => setNextStatus((t.trim().toUpperCase() as DriverStatus) || 'ACTIVE')}
             placeholder="ACTIVE"
-            placeholderTextColor={palette.icon}
+            placeholderTextColor={palette.muted}
             autoCapitalize="characters"
-            style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+            style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
           />
 
           <Pressable onPress={updateStatus} disabled={actionsDisabled} style={[styles.secondaryBtn, { borderColor: palette.tint, opacity: actionsDisabled ? 0.6 : 1 }]}>
@@ -197,8 +197,8 @@ export default function AdminDriverDetailsScreen() {
           </Pressable>
 
           <View style={styles.actionsRow}>
-            <Pressable onPress={ban} disabled={actionsDisabled} style={[styles.actionBtn, { borderColor: '#c0392b', opacity: actionsDisabled ? 0.6 : 1 }]}>
-              <ThemedText style={{ color: '#c0392b' }}>Ban</ThemedText>
+            <Pressable onPress={ban} disabled={actionsDisabled} style={[styles.actionBtn, { borderColor: palette.danger, opacity: actionsDisabled ? 0.6 : 1 }]}>
+              <ThemedText style={{ color: palette.danger }}>Ban</ThemedText>
             </Pressable>
 
             <View style={{ flex: 1, gap: 8 }}>
@@ -206,17 +206,17 @@ export default function AdminDriverDetailsScreen() {
                 value={pauseDays}
                 onChangeText={setPauseDays}
                 placeholder="days"
-                placeholderTextColor={palette.icon}
+                placeholderTextColor={palette.muted}
                 keyboardType="numeric"
-                style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+                style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
               />
-              <Pressable onPress={pause} disabled={actionsDisabled} style={[styles.actionBtn, { borderColor: palette.icon, opacity: actionsDisabled ? 0.6 : 1 }]}>
+              <Pressable onPress={pause} disabled={actionsDisabled} style={[styles.actionBtn, { borderColor: palette.border, opacity: actionsDisabled ? 0.6 : 1 }]}>
                 <ThemedText>Pause</ThemedText>
               </Pressable>
             </View>
           </View>
 
-          <Pressable onPress={load} style={[styles.secondaryBtn, { borderColor: palette.icon }]}>
+          <Pressable onPress={load} style={[styles.secondaryBtn, { borderColor: palette.border, backgroundColor: palette.card }]}>
             <ThemedText>Rafraîchir</ThemedText>
           </Pressable>
         </View>

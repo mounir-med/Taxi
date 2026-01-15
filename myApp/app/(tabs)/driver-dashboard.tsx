@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { router } from 'expo-router';
 
 import { ThemedText } from '@/components/themed-text';
@@ -8,6 +8,8 @@ import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useAuth } from '@/lib/auth';
 import { apiRequest, type ApiError } from '@/lib/api';
+
+const Logo = require('@/assets/images/logo.png');
 
 type WalletDto = {
   balance?: number;
@@ -72,21 +74,20 @@ export default function DriverDashboardScreen() {
   }, [loadAll]);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView style={{ backgroundColor: palette.background }} contentContainerStyle={styles.container}>
       <ThemedView style={styles.headerRow}>
+        <Image source={Logo} style={styles.logo} resizeMode="contain" />
         <ThemedText type="title">Dashboard</ThemedText>
         <Pressable
           onPress={loadAll}
-          style={[styles.refreshBtn, { borderColor: palette.icon }]}
+          style={[styles.refreshBtn, { borderColor: palette.border, backgroundColor: palette.card }]}
           disabled={loading}
         >
           <ThemedText style={{ color: palette.text }}>{loading ? '...' : 'Rafraîchir'}</ThemedText>
         </Pressable>
       </ThemedView>
 
-      {error ? (
-        <ThemedText style={{ color: 'red', marginBottom: 12 }}>{error}</ThemedText>
-      ) : null}
+      {error ? <ThemedText style={{ color: palette.danger, marginBottom: 12 }}>{error}</ThemedText> : null}
 
       {loading && !wallet && trips.length === 0 ? (
         <View style={{ paddingVertical: 24 }}>
@@ -94,8 +95,7 @@ export default function DriverDashboardScreen() {
         </View>
       ) : null}
 
-      <ThemedView style={[styles.card, { borderColor: palette.icon }]}
-      >
+      <ThemedView style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
         <ThemedText type="defaultSemiBold" style={styles.cardTitle}>
           Wallet
         </ThemedText>
@@ -112,8 +112,7 @@ export default function DriverDashboardScreen() {
         </Pressable>
       </ThemedView>
 
-      <ThemedView style={[styles.card, { borderColor: palette.icon }]}
-      >
+      <ThemedView style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
         <ThemedText type="defaultSemiBold" style={styles.cardTitle}>
           Trajets
         </ThemedText>
@@ -132,13 +131,13 @@ export default function DriverDashboardScreen() {
         <ThemedView style={styles.actionsRow}>
           <Pressable
             onPress={() => router.push('/(tabs)/create-trip' as any)}
-            style={[styles.secondaryBtn, { borderColor: palette.icon }]}
+            style={[styles.secondaryBtn, { borderColor: palette.border, backgroundColor: palette.card }]}
           >
             <ThemedText style={{ color: palette.text }}>Créer un trajet</ThemedText>
           </Pressable>
           <Pressable
             onPress={() => router.push('/(tabs)/trips' as any)}
-            style={[styles.secondaryBtn, { borderColor: palette.icon }]}
+            style={[styles.secondaryBtn, { borderColor: palette.border, backgroundColor: palette.card }]}
           >
             <ThemedText style={{ color: palette.text }}>Mes trajets</ThemedText>
           </Pressable>
@@ -148,19 +147,19 @@ export default function DriverDashboardScreen() {
       <ThemedView style={styles.quickLinksRow}>
         <Pressable
           onPress={() => router.push('/(tabs)/complaints' as any)}
-          style={[styles.linkBtn, { borderColor: palette.icon }]}
+          style={[styles.linkBtn, { borderColor: palette.border, backgroundColor: palette.card }]}
         >
           <ThemedText style={{ color: palette.text }}>Réclamations</ThemedText>
         </Pressable>
         <Pressable
           onPress={() => router.push('/(tabs)/location' as any)}
-          style={[styles.linkBtn, { borderColor: palette.icon }]}
+          style={[styles.linkBtn, { borderColor: palette.border, backgroundColor: palette.card }]}
         >
           <ThemedText style={{ color: palette.text }}>Localisation</ThemedText>
         </Pressable>
         <Pressable
           onPress={() => router.push('/(tabs)/account' as any)}
-          style={[styles.linkBtn, { borderColor: palette.icon }]}
+          style={[styles.linkBtn, { borderColor: palette.border, backgroundColor: palette.card }]}
         >
           <ThemedText style={{ color: palette.text }}>Compte</ThemedText>
         </Pressable>
@@ -191,6 +190,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 12,
+  },
+  logo: {
+    width: 40,
+    height: 40,
   },
   refreshBtn: {
     paddingHorizontal: 12,

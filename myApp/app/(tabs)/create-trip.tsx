@@ -177,7 +177,7 @@ export default function CreateTripScreen() {
           <ThemedText style={{ opacity: 0.8 }}>Publie une proposition de trajet</ThemedText>
         </View>
 
-        <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+        <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
           <ThemedText type="defaultSemiBold" style={styles.label}>
             Adresse de départ
           </ThemedText>
@@ -185,8 +185,8 @@ export default function CreateTripScreen() {
             value={pickupAddress}
             onChangeText={setPickupAddress}
             placeholder="ex: Centre-ville"
-            placeholderTextColor={palette.icon}
-            style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+            placeholderTextColor={palette.muted}
+            style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
           />
 
           <View style={styles.row}>
@@ -198,9 +198,9 @@ export default function CreateTripScreen() {
                 value={pickupLatitude}
                 onChangeText={setPickupLatitude}
                 placeholder="ex: 33.58"
-                placeholderTextColor={palette.icon}
+                placeholderTextColor={palette.muted}
                 keyboardType="numeric"
-                style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+                style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
               />
             </View>
             <View style={styles.col}>
@@ -211,9 +211,9 @@ export default function CreateTripScreen() {
                 value={pickupLongitude}
                 onChangeText={setPickupLongitude}
                 placeholder="ex: -7.61"
-                placeholderTextColor={palette.icon}
+                placeholderTextColor={palette.muted}
                 keyboardType="numeric"
-                style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+                style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
               />
             </View>
           </View>
@@ -225,8 +225,8 @@ export default function CreateTripScreen() {
             value={destinationAddress}
             onChangeText={setDestinationAddress}
             placeholder="ex: Gare"
-            placeholderTextColor={palette.icon}
-            style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+            placeholderTextColor={palette.muted}
+            style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
           />
 
           <View style={styles.row}>
@@ -238,9 +238,9 @@ export default function CreateTripScreen() {
                 value={destinationLatitude}
                 onChangeText={setDestinationLatitude}
                 placeholder="ex: 33.60"
-                placeholderTextColor={palette.icon}
+                placeholderTextColor={palette.muted}
                 keyboardType="numeric"
-                style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+                style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
               />
             </View>
             <View style={styles.col}>
@@ -251,9 +251,9 @@ export default function CreateTripScreen() {
                 value={destinationLongitude}
                 onChangeText={setDestinationLongitude}
                 placeholder="ex: -7.55"
-                placeholderTextColor={palette.icon}
+                placeholderTextColor={palette.muted}
                 keyboardType="numeric"
-                style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+                style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
               />
             </View>
           </View>
@@ -267,9 +267,9 @@ export default function CreateTripScreen() {
                 value={proposedPrice}
                 onChangeText={setProposedPrice}
                 placeholder="ex: 50"
-                placeholderTextColor={palette.icon}
+                placeholderTextColor={palette.muted}
                 keyboardType="numeric"
-                style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+                style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
               />
             </View>
             <View style={styles.col}>
@@ -280,9 +280,9 @@ export default function CreateTripScreen() {
                 value={availableSeats}
                 onChangeText={setAvailableSeats}
                 placeholder="4"
-                placeholderTextColor={palette.icon}
+                placeholderTextColor={palette.muted}
                 keyboardType="numeric"
-                style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+                style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
               />
             </View>
           </View>
@@ -296,9 +296,9 @@ export default function CreateTripScreen() {
                 value={estimatedDuration}
                 onChangeText={setEstimatedDuration}
                 placeholder="ex: 30"
-                placeholderTextColor={palette.icon}
+                placeholderTextColor={palette.muted}
                 keyboardType="numeric"
-                style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+                style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
               />
             </View>
             <View style={styles.col}>
@@ -309,8 +309,8 @@ export default function CreateTripScreen() {
                 value={vehicleType}
                 editable={false}
                 placeholder="ex: Sedan"
-                placeholderTextColor={palette.icon}
-                style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+                placeholderTextColor={palette.muted}
+                style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
               />
             </View>
           </View>
@@ -324,9 +324,9 @@ export default function CreateTripScreen() {
               setPickerMode('date');
               setPickerOpen(true);
             }}
-            style={[styles.input, { borderColor: palette.icon, justifyContent: 'center' }]}
+            style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, justifyContent: 'center' }]}
           >
-            <ThemedText style={{ color: departureDate ? palette.text : palette.icon }}>
+            <ThemedText style={{ color: departureDate ? palette.text : palette.muted }}>
               {departureDate ? formatDateTime(departureDate) : 'Choisir date/heure'}
             </ThemedText>
           </Pressable>
@@ -340,9 +340,9 @@ export default function CreateTripScreen() {
               setPickerMode('date');
               setPickerOpen(true);
             }}
-            style={[styles.input, { borderColor: palette.icon, justifyContent: 'center' }]}
+            style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, justifyContent: 'center' }]}
           >
-            <ThemedText style={{ color: expiresDate ? palette.text : palette.icon }}>
+            <ThemedText style={{ color: expiresDate ? palette.text : palette.muted }}>
               {expiresDate ? formatDateTime(expiresDate) : 'Choisir date/heure'}
             </ThemedText>
           </Pressable>
@@ -407,7 +407,7 @@ export default function CreateTripScreen() {
             />
           ) : null}
 
-          {error ? <ThemedText style={{ color: '#c0392b', marginTop: 8 }}>{error}</ThemedText> : null}
+          {error ? <ThemedText style={{ color: palette.danger, marginTop: 8 }}>{error}</ThemedText> : null}
 
           <Pressable
             onPress={onSubmit}
@@ -415,7 +415,7 @@ export default function CreateTripScreen() {
             style={[
               styles.primaryBtn,
               {
-                backgroundColor: canSubmit ? palette.tint : palette.icon,
+                backgroundColor: canSubmit ? palette.tint : palette.border,
                 opacity: canSubmit ? 1 : 0.6,
               },
             ]}

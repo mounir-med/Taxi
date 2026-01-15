@@ -47,12 +47,12 @@ export default function UserMyTripsListScreen() {
         <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
           Mes trajets
         </ThemedText>
-        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.icon }]} disabled={loading}>
+        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.border, backgroundColor: palette.card }]} disabled={loading}>
           <ThemedText>{loading ? '...' : 'Rafraîchir'}</ThemedText>
         </Pressable>
       </View>
 
-      {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
+      {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
 
       <ScrollView contentContainerStyle={{ gap: 12, paddingBottom: 16 }}>
         {loading ? (
@@ -64,7 +64,7 @@ export default function UserMyTripsListScreen() {
         {!loading && items.length === 0 ? <ThemedText style={{ opacity: 0.7 }}>Aucun trajet</ThemedText> : null}
 
         {items.map((t) => (
-          <View key={String(t.id)} style={[styles.item, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+          <View key={String(t.id)} style={[styles.item, { borderColor: palette.border, backgroundColor: palette.card }]}>
             <View style={styles.row}>
               <ThemedText type="defaultSemiBold">Trip ID</ThemedText>
               <ThemedText>{String(t.id)}</ThemedText>
@@ -82,7 +82,7 @@ export default function UserMyTripsListScreen() {
 
             <Pressable
               onPress={() => router.push({ pathname: '/(tabs)/my-trips/[tripId]', params: { tripId: String(t.id) } } as any)}
-              style={[styles.actionBtn, { borderColor: palette.icon }]}
+              style={[styles.actionBtn, { borderColor: palette.border, backgroundColor: palette.card }]}
             >
               <ThemedText>Voir détail</ThemedText>
             </Pressable>

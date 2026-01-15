@@ -74,15 +74,15 @@ export default function UpdateLocationScreen() {
         Localisation
       </ThemedText>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
         <ThemedText type="defaultSemiBold">Latitude</ThemedText>
         <TextInput
           value={latitude}
           onChangeText={setLatitude}
           placeholder="ex: 33.58"
-          placeholderTextColor={palette.icon}
+          placeholderTextColor={palette.muted}
           keyboardType="numeric"
-          style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+          style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
         />
 
         <ThemedText type="defaultSemiBold">Longitude</ThemedText>
@@ -90,13 +90,13 @@ export default function UpdateLocationScreen() {
           value={longitude}
           onChangeText={setLongitude}
           placeholder="ex: -7.61"
-          placeholderTextColor={palette.icon}
+          placeholderTextColor={palette.muted}
           keyboardType="numeric"
-          style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+          style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
         />
 
-        {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
-        {success ? <ThemedText style={{ color: '#27ae60' }}>{success}</ThemedText> : null}
+        {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
+        {success ? <ThemedText style={{ color: palette.success }}>{success}</ThemedText> : null}
 
         <Pressable
           onPress={onSubmit}

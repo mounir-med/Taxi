@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -8,6 +8,8 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useAuth } from '@/lib/auth';
 import type { ApiError } from '@/lib/api';
 import { AdminService } from '@/lib/adminService';
+
+const Logo = require('@/assets/images/logo.png');
 
 function readNumber(obj: any, keys: string[]): number | null {
   for (const k of keys) {
@@ -70,22 +72,23 @@ export default function AdminDashboardScreen() {
   return (
     <ThemedView style={styles.container}>
       <View style={styles.headerRow}>
-        <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
+        <Image source={Logo} style={styles.logo} resizeMode="contain" />
+        <ThemedText type="title" style={{ fontFamily: Fonts.rounded, flex: 1 }}>
           Admin Dashboard
         </ThemedText>
-        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.icon }]} disabled={loading}>
+        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.border, backgroundColor: palette.card }]} disabled={loading}>
           <ThemedText>{loading ? '...' : 'Rafraîchir'}</ThemedText>
         </Pressable>
       </View>
 
-      {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
+      {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}
       >
         <ThemedText type="defaultSemiBold">KPI</ThemedText>
         <View style={styles.kpiGrid}>
           {cards.map((c) => (
-            <View key={c.label} style={[styles.kpiItem, { borderColor: palette.icon }]}>
+            <View key={c.label} style={[styles.kpiItem, { borderColor: palette.border, backgroundColor: palette.inputBackground }]}>
               <ThemedText style={{ opacity: 0.8 }}>{c.label}</ThemedText>
               <ThemedText type="subtitle">{typeof c.value === 'number' ? String(c.value) : '-'}</ThemedText>
             </View>
@@ -93,7 +96,7 @@ export default function AdminDashboardScreen() {
         </View>
       </View>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background, flex: 1 }]}
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card, flex: 1 }]}
       >
         <ThemedText type="defaultSemiBold">Réponse brute</ThemedText>
 
@@ -124,6 +127,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 12,
+  },
+  logo: {
+    width: 40,
+    height: 40,
   },
   refreshBtn: {
     borderWidth: 1,

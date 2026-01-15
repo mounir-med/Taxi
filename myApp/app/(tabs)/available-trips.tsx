@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, TextInput, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
@@ -8,6 +8,8 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useAuth } from '@/lib/auth';
 import type { ApiError } from '@/lib/api';
 import { UserService, type Trip, type TripFilters } from '@/lib/userService';
+
+const Logo = require('@/assets/images/logo.png');
 
 export default function AvailableTripsScreen() {
   const { token } = useAuth();
@@ -87,11 +89,14 @@ export default function AvailableTripsScreen() {
 
   return (
     <ThemedView style={styles.container}>
-      <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
-        Trajets disponibles
-      </ThemedText>
+      <View style={styles.headerRow}>
+        <Image source={Logo} style={styles.logo} resizeMode="contain" />
+        <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
+          Trajets disponibles
+        </ThemedText>
+      </View>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
         <ThemedText type="defaultSemiBold">Filtres</ThemedText>
 
         <View style={styles.filtersRow}>
@@ -102,8 +107,8 @@ export default function AvailableTripsScreen() {
               onChangeText={setMinPrice}
               keyboardType="numeric"
               placeholder="ex: 50"
-              placeholderTextColor={palette.icon}
-              style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+              placeholderTextColor={palette.muted}
+              style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
             />
           </View>
           <View style={styles.filterCol}>
@@ -113,8 +118,8 @@ export default function AvailableTripsScreen() {
               onChangeText={setMaxPrice}
               keyboardType="numeric"
               placeholder="ex: 200"
-              placeholderTextColor={palette.icon}
-              style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+              placeholderTextColor={palette.muted}
+              style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
             />
           </View>
         </View>
@@ -126,9 +131,9 @@ export default function AvailableTripsScreen() {
               value={vehicleType}
               onChangeText={setVehicleType}
               placeholder="ex: SEDAN"
-              placeholderTextColor={palette.icon}
+              placeholderTextColor={palette.muted}
               autoCapitalize="characters"
-              style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+              style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
             />
           </View>
           <View style={styles.filterCol}>
@@ -138,21 +143,21 @@ export default function AvailableTripsScreen() {
               onChangeText={setAvailableSeats}
               keyboardType="numeric"
               placeholder="ex: 2"
-              placeholderTextColor={palette.icon}
-              style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+              placeholderTextColor={palette.muted}
+              style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
             />
           </View>
         </View>
 
-        <Pressable onPress={load} disabled={loading} style={[styles.refreshBtn, { borderColor: palette.icon }]}>
+        <Pressable onPress={load} disabled={loading} style={[styles.refreshBtn, { borderColor: palette.border }]}>
           <ThemedText>{loading ? '...' : 'Appliquer & rafraîchir'}</ThemedText>
         </Pressable>
 
-        {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
-        {success ? <ThemedText style={{ color: '#1e8449' }}>{success}</ThemedText> : null}
+        {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
+        {success ? <ThemedText style={{ color: palette.success }}>{success}</ThemedText> : null}
       </View>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background, flex: 1 }]}>
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card, flex: 1 }]}>
         {loading ? (
           <View style={{ paddingVertical: 12, alignItems: 'center' }}>
             <ActivityIndicator />
@@ -163,7 +168,7 @@ export default function AvailableTripsScreen() {
           {items.length === 0 && !loading ? <ThemedText style={{ opacity: 0.7 }}>Aucun trajet</ThemedText> : null}
 
           {items.map((t) => (
-            <View key={String(t.id)} style={[styles.item, { borderColor: palette.icon }]}>
+            <View key={String(t.id)} style={[styles.item, { borderColor: palette.border, backgroundColor: palette.card }]}>
               <View style={styles.row}>
                 <ThemedText type="defaultSemiBold">Prix</ThemedText>
                 <ThemedText>{String((t as any).price ?? '-')}</ThemedText>
@@ -200,6 +205,15 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     gap: 14,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  logo: {
+    width: 40,
+    height: 40,
   },
   card: {
     borderWidth: 1,

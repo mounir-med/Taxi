@@ -110,7 +110,7 @@ export default function DriverComplaintsScreen() {
         Réclamations
       </ThemedText>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
         {isUser ? (
           <View style={styles.form}>
             <ThemedText type="defaultSemiBold">Créer une réclamation</ThemedText>
@@ -123,13 +123,13 @@ export default function DriverComplaintsScreen() {
                   await loadMyTrips();
                 }
               }}
-              style={[styles.pickBtn, { borderColor: palette.icon }]}
+              style={[styles.pickBtn, { borderColor: palette.border }]}
             >
               <ThemedText>Choisir depuis Mes trajets</ThemedText>
             </Pressable>
 
             {showMyTrips ? (
-              <View style={[styles.pickList, { borderColor: palette.icon }]}>
+              <View style={[styles.pickList, { borderColor: palette.border, backgroundColor: palette.card }]}>
                 {myTripsLoading ? (
                   <View style={{ paddingVertical: 10, alignItems: 'center' }}>
                     <ActivityIndicator />
@@ -153,7 +153,7 @@ export default function DriverComplaintsScreen() {
                         }
                         setShowMyTrips(false);
                       }}
-                      style={[styles.pickItem, { borderColor: palette.icon }]}
+                      style={[styles.pickItem, { borderColor: palette.border, backgroundColor: palette.card }]}
                     >
                       <View style={styles.row}>
                         <ThemedText type="defaultSemiBold">Trip</ThemedText>
@@ -174,9 +174,9 @@ export default function DriverComplaintsScreen() {
               value={tripId}
               onChangeText={setTripId}
               placeholder="tripId"
-              placeholderTextColor={palette.icon}
+              placeholderTextColor={palette.muted}
               autoCapitalize="none"
-              style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+              style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
             />
 
             <ThemedText style={styles.label}>Driver ID</ThemedText>
@@ -184,9 +184,9 @@ export default function DriverComplaintsScreen() {
               value={driverId}
               onChangeText={setDriverId}
               placeholder="driverId"
-              placeholderTextColor={palette.icon}
+              placeholderTextColor={palette.muted}
               autoCapitalize="none"
-              style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+              style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
             />
 
             <ThemedText style={styles.label}>Message</ThemedText>
@@ -194,9 +194,9 @@ export default function DriverComplaintsScreen() {
               value={message}
               onChangeText={setMessage}
               placeholder="Votre message"
-              placeholderTextColor={palette.icon}
+              placeholderTextColor={palette.muted}
               multiline
-              style={[styles.textarea, { borderColor: palette.icon, color: palette.text }]}
+              style={[styles.textarea, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
             />
 
             <Pressable
@@ -209,7 +209,7 @@ export default function DriverComplaintsScreen() {
           </View>
         ) : null}
 
-        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.icon }]}>
+        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.border }]}>
           <ThemedText>Rafraîchir</ThemedText>
         </Pressable>
 
@@ -219,14 +219,14 @@ export default function DriverComplaintsScreen() {
           </View>
         ) : null}
 
-        {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
-        {success ? <ThemedText style={{ color: '#1e8449' }}>{success}</ThemedText> : null}
+        {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
+        {success ? <ThemedText style={{ color: palette.success }}>{success}</ThemedText> : null}
 
         <ScrollView contentContainerStyle={{ gap: 12, paddingBottom: 10 }}>
           {items.length === 0 && !loading ? <ThemedText style={{ opacity: 0.7 }}>Aucune réclamation</ThemedText> : null}
 
           {items.map((c) => (
-            <View key={String(c.id ?? Math.random())} style={[styles.item, { borderColor: palette.icon }]}
+            <View key={String(c.id ?? Math.random())} style={[styles.item, { borderColor: palette.border, backgroundColor: palette.card }]}
             >
               <View style={styles.row}>
                 <ThemedText type="defaultSemiBold">Statut</ThemedText>

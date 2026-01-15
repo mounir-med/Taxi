@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ActivityIndicator, Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
+import { ActivityIndicator, Image, Modal, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import { router } from 'expo-router';
 
 import { ThemedText } from '@/components/themed-text';
@@ -8,6 +8,8 @@ import { Colors, Fonts } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useAuth, type Role } from '@/lib/auth';
 import type { ApiError } from '@/lib/api';
+
+const Logo = require('@/assets/images/logo.png');
 
 function roleLabel(role: Role) {
   if (role === 'USER') return 'Utilisateur';
@@ -25,7 +27,7 @@ function RoleSelect({ value, onChange }: { value: Role; onChange: (r: Role) => v
       <Pressable
         accessibilityRole="button"
         onPress={() => setOpen(true)}
-        style={[styles.select, { borderColor: palette.icon, backgroundColor: palette.background }]}
+        style={[styles.select, { borderColor: palette.border, backgroundColor: palette.inputBackground }]}
       >
         <ThemedText type="defaultSemiBold">{roleLabel(value)}</ThemedText>
         <ThemedText style={{ opacity: 0.7 }}>Changer</ThemedText>
@@ -33,7 +35,7 @@ function RoleSelect({ value, onChange }: { value: Role; onChange: (r: Role) => v
 
       <Modal transparent visible={open} animationType="fade" onRequestClose={() => setOpen(false)}>
         <View style={styles.modalBackdrop}>
-          <View style={[styles.modalCard, { backgroundColor: palette.background, borderColor: palette.icon }]}
+          <View style={[styles.modalCard, { backgroundColor: palette.card, borderColor: palette.border }]}
           >
             <ThemedText type="subtitle" style={{ fontFamily: Fonts.rounded }}>
               Sélectionner un rôle
@@ -46,7 +48,7 @@ function RoleSelect({ value, onChange }: { value: Role; onChange: (r: Role) => v
                   onChange(r);
                   setOpen(false);
                 }}
-                style={[styles.modalItem, { borderColor: palette.icon }]}
+                style={[styles.modalItem, { borderColor: palette.border, backgroundColor: palette.inputBackground }]}
               >
                 <ThemedText type={r === value ? 'defaultSemiBold' : 'default'}>{roleLabel(r)}</ThemedText>
               </Pressable>
@@ -107,6 +109,10 @@ export default function LoginScreen() {
 
   return (
     <ThemedView style={styles.container}>
+      <View style={styles.logoContainer}>
+        <Image source={Logo} style={styles.logo} resizeMode="contain" />
+      </View>
+
       <View style={styles.header}>
         <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
           Connexion
@@ -114,7 +120,7 @@ export default function LoginScreen() {
         <ThemedText style={{ opacity: 0.8 }}>Accède à ton espace en toute sécurité</ThemedText>
       </View>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}>
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}>
         <ThemedText type="defaultSemiBold">Rôle</ThemedText>
         <RoleSelect value={selectedRole} onChange={setSelectedRole} />
 
@@ -125,10 +131,10 @@ export default function LoginScreen() {
           value={email}
           onChangeText={setEmail}
           placeholder="ex: nom@mail.com"
-          placeholderTextColor={palette.icon}
+          placeholderTextColor={palette.muted}
           autoCapitalize="none"
           keyboardType="email-address"
-          style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+          style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
         />
 
         <ThemedText type="defaultSemiBold" style={styles.label}>
@@ -138,12 +144,12 @@ export default function LoginScreen() {
           value={password}
           onChangeText={setPassword}
           placeholder="••••••••"
-          placeholderTextColor={palette.icon}
+          placeholderTextColor={palette.muted}
           secureTextEntry
-          style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+          style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
         />
 
-        {error ? <ThemedText style={{ color: '#c0392b', marginTop: 8 }}>{error}</ThemedText> : null}
+        {error ? <ThemedText style={{ color: palette.danger, marginTop: 8 }}>{error}</ThemedText> : null}
 
         <Pressable
           onPress={onSubmit}
@@ -175,6 +181,14 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: 'center',
+  },
+  logoContainer: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  logo: {
+    width: 120,
+    height: 120,
   },
   header: {
     marginBottom: 18,

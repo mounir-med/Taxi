@@ -87,37 +87,37 @@ export default function AdminCreateDriverScreen() {
         Créer driver
       </ThemedText>
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}
       >
         <ThemedText type="defaultSemiBold" style={styles.label}>
           Nom
         </ThemedText>
-        <TextInput value={name} onChangeText={setName} placeholder="Nom" placeholderTextColor={palette.icon} style={[styles.input, { borderColor: palette.icon, color: palette.text }]} />
+        <TextInput value={name} onChangeText={setName} placeholder="Nom" placeholderTextColor={palette.muted} style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]} />
 
         <ThemedText type="defaultSemiBold" style={styles.label}>
           Email
         </ThemedText>
-        <TextInput value={email} onChangeText={setEmail} placeholder="email" placeholderTextColor={palette.icon} autoCapitalize="none" keyboardType="email-address" style={[styles.input, { borderColor: palette.icon, color: palette.text }]} />
+        <TextInput value={email} onChangeText={setEmail} placeholder="email" placeholderTextColor={palette.muted} autoCapitalize="none" keyboardType="email-address" style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]} />
 
         <ThemedText type="defaultSemiBold" style={styles.label}>
           Password
         </ThemedText>
-        <TextInput value={password} onChangeText={setPassword} placeholder="••••••••" placeholderTextColor={palette.icon} secureTextEntry style={[styles.input, { borderColor: palette.icon, color: palette.text }]} />
+        <TextInput value={password} onChangeText={setPassword} placeholder="••••••••" placeholderTextColor={palette.muted} secureTextEntry style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]} />
 
         <ThemedText type="defaultSemiBold" style={styles.label}>
           Téléphone
         </ThemedText>
-        <TextInput value={phone} onChangeText={setPhone} placeholder="+212..." placeholderTextColor={palette.icon} keyboardType="phone-pad" style={[styles.input, { borderColor: palette.icon, color: palette.text }]} />
+        <TextInput value={phone} onChangeText={setPhone} placeholder="+212..." placeholderTextColor={palette.muted} keyboardType="phone-pad" style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]} />
 
         <ThemedText type="defaultSemiBold" style={styles.label}>
           Permis
         </ThemedText>
-        <TextInput value={licenseNumber} onChangeText={setLicenseNumber} placeholder="AB12345" placeholderTextColor={palette.icon} style={[styles.input, { borderColor: palette.icon, color: palette.text }]} />
+        <TextInput value={licenseNumber} onChangeText={setLicenseNumber} placeholder="AB12345" placeholderTextColor={palette.muted} style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]} />
 
         <ThemedText type="defaultSemiBold" style={styles.label}>
           Véhicule
         </ThemedText>
-        <TextInput value={vehicleInfo} onChangeText={setVehicleInfo} placeholder="Véhicule" placeholderTextColor={palette.icon} style={[styles.input, { borderColor: palette.icon, color: palette.text }]} />
+        <TextInput value={vehicleInfo} onChangeText={setVehicleInfo} placeholder="Véhicule" placeholderTextColor={palette.muted} style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]} />
 
         <ThemedText type="defaultSemiBold" style={styles.label}>
           Status (ACTIVE/PAUSED/BANNED)
@@ -126,18 +126,18 @@ export default function AdminCreateDriverScreen() {
           value={status}
           onChangeText={(t) => setStatus((t.trim().toUpperCase() as DriverStatus) || 'ACTIVE')}
           placeholder="ACTIVE"
-          placeholderTextColor={palette.icon}
+          placeholderTextColor={palette.muted}
           autoCapitalize="characters"
-          style={[styles.input, { borderColor: palette.icon, color: palette.text }]}
+          style={[styles.input, { borderColor: palette.border, backgroundColor: palette.inputBackground, color: palette.text }]}
         />
 
-        {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
-        {success ? <ThemedText style={{ color: '#1e8449' }}>{success}</ThemedText> : null}
+        {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
+        {success ? <ThemedText style={{ color: palette.success }}>{success}</ThemedText> : null}
 
         <Pressable
           onPress={onSubmit}
           disabled={!canSubmit}
-          style={[styles.primaryBtn, { backgroundColor: canSubmit ? palette.tint : palette.icon, opacity: canSubmit ? 1 : 0.6 }]}
+          style={[styles.primaryBtn, { backgroundColor: canSubmit ? palette.tint : palette.border, opacity: canSubmit ? 1 : 0.6 }]}
         >
           {submitting ? <ActivityIndicator color="#fff" /> : <ThemedText style={{ color: '#fff' }}>Créer</ThemedText>}
         </Pressable>

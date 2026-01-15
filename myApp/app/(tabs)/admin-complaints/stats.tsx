@@ -43,14 +43,14 @@ export default function AdminComplaintsStatsScreen() {
         <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
           Stats réclamations
         </ThemedText>
-        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.icon }]} disabled={loading}>
+        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.border, backgroundColor: palette.card }]} disabled={loading}>
           <ThemedText>{loading ? '...' : 'Rafraîchir'}</ThemedText>
         </Pressable>
       </View>
 
-      {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
+      {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background, flex: 1 }]}
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card, flex: 1 }]}
       >
         {loading ? (
           <View style={{ alignItems: 'center', paddingVertical: 12 }}>

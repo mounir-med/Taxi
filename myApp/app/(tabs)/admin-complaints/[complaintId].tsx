@@ -84,7 +84,7 @@ export default function AdminComplaintDetailsScreen() {
           Détail réclamation
         </ThemedText>
 
-        <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background }]}
+        <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card }]}
         >
           {loading ? (
             <View style={{ alignItems: 'center', paddingVertical: 12 }}>
@@ -92,8 +92,8 @@ export default function AdminComplaintDetailsScreen() {
             </View>
           ) : null}
 
-          {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
-          {success ? <ThemedText style={{ color: '#1e8449' }}>{success}</ThemedText> : null}
+          {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
+          {success ? <ThemedText style={{ color: palette.success }}>{success}</ThemedText> : null}
 
           <View style={styles.row}>
             <ThemedText type="defaultSemiBold">ID</ThemedText>
@@ -132,7 +132,7 @@ export default function AdminComplaintDetailsScreen() {
             ))}
           </View>
 
-          <Pressable onPress={load} style={[styles.secondaryBtn, { borderColor: palette.icon }]}>
+          <Pressable onPress={load} style={[styles.secondaryBtn, { borderColor: palette.border, backgroundColor: palette.card }]}>
             <ThemedText>Rafraîchir</ThemedText>
           </Pressable>
         </View>

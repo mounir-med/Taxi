@@ -43,14 +43,14 @@ export default function AdminTripsScreen() {
         <ThemedText type="title" style={{ fontFamily: Fonts.rounded }}>
           Trips (global)
         </ThemedText>
-        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.icon }]} disabled={loading}>
+        <Pressable onPress={load} style={[styles.refreshBtn, { borderColor: palette.border, backgroundColor: palette.card }]} disabled={loading}>
           <ThemedText>{loading ? '...' : 'Rafraîchir'}</ThemedText>
         </Pressable>
       </View>
 
-      {error ? <ThemedText style={{ color: '#c0392b' }}>{error}</ThemedText> : null}
+      {error ? <ThemedText style={{ color: palette.danger }}>{error}</ThemedText> : null}
 
-      <View style={[styles.card, { borderColor: palette.icon, backgroundColor: palette.background, flex: 1 }]}>
+      <View style={[styles.card, { borderColor: palette.border, backgroundColor: palette.card, flex: 1 }]}>
         {loading ? (
           <View style={{ alignItems: 'center', paddingVertical: 12 }}>
             <ActivityIndicator />
@@ -61,7 +61,7 @@ export default function AdminTripsScreen() {
           {!loading && items.length === 0 ? <ThemedText style={{ opacity: 0.7 }}>Aucun trajet</ThemedText> : null}
 
           {items.map((t) => (
-            <View key={String(t.id)} style={[styles.item, { borderColor: palette.icon }]}>
+            <View key={String(t.id)} style={[styles.item, { borderColor: palette.border, backgroundColor: palette.card }]}>
               <View style={styles.row}>
                 <ThemedText type="defaultSemiBold">Trip ID</ThemedText>
                 <ThemedText>{String(t.id)}</ThemedText>
